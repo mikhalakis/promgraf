@@ -1,3 +1,3 @@
 # PROMGRAF
-Prometheus, Grafans, Node-exporter one-host Docker containers 
+Prometheus, Grafana, Node-Exporter one-host Docker containers 
 
