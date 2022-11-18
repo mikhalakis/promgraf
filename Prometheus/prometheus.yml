@@ -24,7 +24,7 @@ scrape_configs:
     static_configs:
       - targets: ["node-exporter:9100"]
 
-  - job_name: "docker"
+  - job_name: "cadisor"
     static_configs:
-      - targets: ["localhost:9323"]
+      - targets: ["cadvisor:8080"]
 
