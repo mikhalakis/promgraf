@@ -35,7 +35,7 @@ services:
       - 9090
     volumes:
       - prometheus_data:/prometheus
-      - ../Prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./Prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'
       - '--storage.tsdb.path=/prometheus'
@@ -48,7 +48,7 @@ services:
     image: grafana/grafana-oss:latest
     container_name: grafana
     ports:
-      - 3000:3000:
+      - 3000:3000
     restart: unless-stopped
     networks:
       - promgraf
