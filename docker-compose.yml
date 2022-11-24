@@ -30,13 +30,14 @@ services:
   cadvisor:
     image: gcr.io/cadvisor/cadvisor:latest
     container_name: cadvisor
+    restart: unless-stopped
     expose:
       - 8080
     volumes:
     - /:/rootfs:ro
     - /var/run:/var/run:rw
     - /sys:/sys:ro
-    - /var/lib/docker/:/var/lib/docker:r
+    - /var/lib/docker/:/var/lib/docker:ro
     networks:
       - promgraf
 
@@ -54,14 +55,31 @@ services:
       - '--storage.tsdb.path=/prometheus'
       - '--web.console.libraries=/usr/share/prometheus/console_libraries'
       - '--web.console.templates=/usr/share/prometheus/consoles'
+      - '--web.external-url=/prometheus/'
+      - '--web.route-prefix=/'
     networks:
       - promgraf
 
   grafana:
     image: grafana/grafana-oss:latest
     container_name: grafana
-    ports:
-      - 3000:3000
     restart: unless-stopped
+    expose:
+      - 3000
     networks:
       - promgraf
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    restart: unless-stopped
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ./Nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - ./Nginx/ssl/:/etc/nginx/ssl:ro
+      - ./Nginx/snippets/:/etc/nginx/conf.d/snippets
+    networks:
+      - promgraf
+
