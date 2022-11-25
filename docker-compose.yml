@@ -67,6 +67,9 @@ services:
     restart: unless-stopped
     expose:
       - 3000
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./Grafana/grafana.ini:/etc/grafana/grafana.ini
     networks:
       - promgraf
 
