@@ -1,0 +1,4 @@
+# Ignore SSL files
+Nginx/ssl/
+# Ignore some intermediate working files which names begin with '_'
+_*
