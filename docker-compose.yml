@@ -2,7 +2,13 @@ version: "3.8"
 
 networks:
   promgraf:
+    name: promgraf
     driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: ${PROMGRAF_SUBNET}
+          gateway: ${PROMGRAF_GW}
 
 volumes:
   prometheus_data: {}
@@ -81,9 +87,12 @@ services:
       - 80:80
       - 443:443
     volumes:
-      - ./Nginx/default.conf:/etc/nginx/conf.d/default.conf
+      #- ./Nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - ./Nginx/default.conf.template:/etc/nginx/conf.d/default.conf.template:ro
       - ./Nginx/ssl/:/etc/nginx/ssl:ro
       - ./Nginx/snippets/:/etc/nginx/conf.d/snippets
     networks:
       - promgraf
-
+    environment:
+      - NGINX_ENVSUBST_TEMPLATE_DIR=/etc/nginx/conf.d
+        #- NGINX_RESOLVER=${PROMGRAF_GW}

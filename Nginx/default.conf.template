@@ -1,3 +1,8 @@
+map $cookie_grafana_session $has_no_grafana_cookie {
+    default       1;
+    ~^[\d\w]+$    0;
+}
+
 server {
     listen       80;
     listen  [::]:80;
@@ -6,6 +11,8 @@ server {
 }
 
 server {
+#    resolver ${NGINX_RESOLVER} 8.8.8.8 8.8.4.4 valid=300s;
+#    resolver_timeout 5s;
     server_name 188.43.32.243;
     listen    443 ssl http2;
     listen    [::]:443 ssl http2;
@@ -21,6 +28,10 @@ server {
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        
+        if ($has_no_grafana_cookie)  {
+            return 302 /;
+        }
         proxy_pass http://prometheus:9090/;
     }
     error_page  404              /404.html;
