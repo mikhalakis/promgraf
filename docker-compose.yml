@@ -15,23 +15,24 @@ volumes:
   grafana_data: {}
 
 services:
-  node-exporter:
-    image: prom/node-exporter:latest
-    container_name: node-exporter
-    restart: unless-stopped
-    volumes:
-      #- /proc:/host/proc:ro
-      #- /sys:/host/sys:ro
-      - /:/rootfs:ro,rslave
-    command:
-      #- '--path.procfs=/host/proc'
-      - '--path.rootfs=/rootfs'
-      #- '--path.sysfs=/host/sys'
-      #- '--collector.filesystem.mount-points-exclude=^/(sys|proc|dev|host|etc)($$|/)'
-    expose:
-      - 9100
-    networks:
-      - promgraf
+  # Node Exporter moved to host system 
+  #node-exporter:
+  #  image: prom/node-exporter:latest
+  #  container_name: node-exporter
+  #  restart: unless-stopped
+  #  volumes:
+  #    #- /proc:/host/proc:ro
+  #    #- /sys:/host/sys:ro
+  #    - /:/rootfs:ro,rslave
+  #  command:
+  #    #- '--path.procfs=/host/proc'
+  #    - '--path.rootfs=/rootfs'
+  #    #- '--path.sysfs=/host/sys'
+  #    #- '--collector.filesystem.mount-points-exclude=^/(sys|proc|dev|host|etc)($$|/)'
+  #  expose:
+  #    - 9100
+  #  networks:
+  #    - promgraf
 
   cadvisor:
     image: gcr.io/cadvisor/cadvisor:latest
@@ -76,6 +77,9 @@ services:
     volumes:
       - grafana_data:/var/lib/grafana
       - ./Grafana/grafana.ini:/etc/grafana/grafana.ini
+      - ./Grafana/prometheus.yml:/etc/grafana/provisioning/datasources/prometheus.yml
+      - ./Grafana/dashboards.yml:/etc/grafana/provisioning/dashboards/dashboards.yml
+      - ./Grafana/dashboards:/var/lib/grafana/dashboards
     networks:
       - promgraf
 

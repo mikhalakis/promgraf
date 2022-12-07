@@ -1,6 +1,6 @@
-- [ ] Set initial Grafana configuration via docker-compose.yml
+- [x] Set initial Grafana configuration via docker-compose.yml
 - [x] Restrict access to Prometheus web-interface only for authorised Grafana users (via Cookie)
 - [x] Fix Prometheus redirection  
-- [ ] Setup initial Grfafna Dashboard
+- [x] Setup initial Grfafna Dashboard
 - [ ] Enable use Let's Encrypt SSL Certificate as an option
 - [ ] Per VLAN (if any) receive/transmit bytes statistics
