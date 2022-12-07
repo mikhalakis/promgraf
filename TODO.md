@@ -1,4 +1,4 @@
-- [x] Set initial Grafana configuration via docker-compose.yml
+- [x] Set initial Grafana configuration
 - [x] Restrict access to Prometheus web-interface only for authorised Grafana users (via Cookie)
 - [x] Fix Prometheus redirection  
 - [x] Setup initial Grfafna Dashboard
