@@ -4,4 +4,4 @@
 - [x] Setup initial Grfafna Dashboard
 - [ ] Enable use Let's Encrypt SSL Certificate as an option
 - ~~[ ] Per VLAN (if any) receive/transmit bytes statistics~~
-- [ ] Write shel script interactive cofiguration and run containers
+- [ ] Write shell script interactive cofiguration and run containers
