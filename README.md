@@ -11,8 +11,8 @@ $PROMGRAF_GW
 
 ### Volumes
 Persistent volumes are:
-prometheus_data
-grafana_data
+1. **prometheus_data**
+2. **grafana_data** 
 
 It might be a local stores with default options or, as it's implemented in current docker-compose.yml, nfs mounts.
 
