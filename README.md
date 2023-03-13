@@ -14,7 +14,7 @@ Persistent volumes are:
 1. **prometheus_data**
 2. **grafana_data** 
 
-It might be a local stores with default options or, as it's implemented in current docker-compose.yml, nfs mounts.
+It might be local stores with default options or, as it's implemented in current docker-compose.yml, nfs mounts.
 
 ### Configure Grafana
 Grafana container has a bind of /etc/grafana/grafana.ini to ./Grafana/grafana.ini. You can change Grafana settings by editing it. Please read [Configure a Grafana Docker image](https://grafana.com/docs/grafana/v9.0/setup-grafana/configure-docker/#configure-a-grafana-docker-image) first.
