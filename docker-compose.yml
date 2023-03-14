@@ -14,12 +14,12 @@ volumes:
   prometheus_data: 
     driver_opts:
       type: "nfs"
-      o: "addr=${PROMGRAF_NFS},rw"
+      o: "addr=${PROMGRAF_NFS},rw,vers=4"
       device: ":/sm_nfs/prometheus"
   grafana_data:
      driver_opts:
       type: "nfs"
-      o: "addr=${PROMGRAF_NFS},rw"
+      o: "addr=${PROMGRAF_NFS},rw,vers=4"
       device: ":/sm_nfs/grafana" 
 
 services:
