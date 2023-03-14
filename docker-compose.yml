@@ -11,8 +11,16 @@ networks:
           gateway: ${PROMGRAF_GW}
 
 volumes:
-  prometheus_data: {}
-  grafana_data: {}
+  prometheus_data: 
+    driver_opts:
+      type: "nfs"
+      o: "addr=${PROMGRAF_NFS},rw"
+      device: ":/sm_nfs/prometheus"
+  grafana_data:
+     driver_opts:
+      type: "nfs"
+      o: "addr=${PROMGRAF_NFS},rw"
+      device: ":/sm_nfs/grafana" 
 
 services:
   # Node Exporter moved to host system 
