@@ -92,7 +92,7 @@ services:
       - promgraf
 
   nginx:
-    image: nginx:latest
+    image: nginx:alpine
     container_name: nginx
     restart: unless-stopped
     ports:
@@ -107,4 +107,4 @@ services:
       - promgraf
     environment:
       - NGINX_ENVSUBST_TEMPLATE_DIR=/etc/nginx/conf.d
-        #- NGINX_RESOLVER=${PROMGRAF_GW}
+      - PROMGRAF_SERVER=${PROMGRAF_SERVER}
